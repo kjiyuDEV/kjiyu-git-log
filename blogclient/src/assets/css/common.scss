@@ -108,11 +108,9 @@ body {
         font-size: 12px;
     }
     .right-box {
-        /* border:solid 2px red; */
         display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
-        /* width: 5vw; */
         justify-content: space-between;
         align-items: center;
         > div {
