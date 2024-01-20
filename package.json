@@ -19,7 +19,7 @@
         "tailwindcss": "^3.4.1"
     },
     "scripts": {
-        "dev": "nodemon ./blogserver/server.js --exec babel-node --ignore './blogclinet'",
+        "dev": "nodemon ./blogserver/server.js --exec babel-node --ignore './blogclient'",
         "prebuild": "cd blogclient && npm run build",
         "build": "babel blogserver --out-dir build",
         "build:server": "babel blogserver --out-dir build",

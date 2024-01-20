@@ -10,12 +10,12 @@ import path from 'path';
 import postRoutes from './routes/api/post';
 import userRoutes from './routes/api/user';
 import authRoutes from './routes/api/auth';
-import searchRoutes from './routes/api/search';
 
 import morgan from 'morgan';
 
 const app = express();
 const { MONGO_URI } = config;
+console.log(MONGO_URI, '<<MONGO_URI');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -31,8 +31,6 @@ mongoose
     .connect(MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
     })
     .then(() => console.log('MongoDB connecting Success!!'))
     .catch((e) => console.log(e));
@@ -51,8 +49,6 @@ app.all('*', (req, res, next) => {
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/search', searchRoutes);
-
 if (prod) {
     app.use(express.static(path.join(__dirname, '../client/build')));
     app.get('*', (req, res) => {
