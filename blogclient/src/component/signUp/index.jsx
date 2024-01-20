@@ -101,38 +101,48 @@ const SignUp = () => {
             <p>회원가입 회원정보 입력</p>
             <form onSubmit={onSubmit}>
                 <div className="default-wrap" style={{ overflow: 'hidden' }}>
-                    <div>
+                    <div className="input-wrap">
                         <input
                             id="userId"
                             placeholder="* 아이디"
                             style={{ borderTop: 0 }}
                             onChange={(e) => onChange(e)}
+                            className="input"
                         />
 
-                        <FontAwesomeIcon icon={faFaceSmile} color="#c5c5c5" />
+                        <FontAwesomeIcon className="svg" icon={faFaceSmile} color="#c5c5c5" />
                     </div>
-                    <div>
-                        <input id="password" type="password" placeholder="* 비밀번호" onChange={(e) => onChange(e)} />
-                        <FontAwesomeIcon icon={faLock} color="#c5c5c5" />
-                    </div>
-                    <div>
+                    <div className="input-wrap">
                         <input
+                            className="input"
+                            id="password"
+                            type="password"
+                            placeholder="* 비밀번호"
+                            onChange={(e) => onChange(e)}
+                        />
+                        <FontAwesomeIcon className="svg" icon={faLock} color="#c5c5c5" />
+                    </div>
+                    <div className="input-wrap">
+                        <input
+                            className="input"
                             id="passwordChk"
                             type="password"
                             placeholder="* 비밀번호 재입력"
                             onChange={(e) => onChange(e)}
                         />
-                        <FontAwesomeIcon icon={faLock} color="#c5c5c5" />
+                        <FontAwesomeIcon className="svg" icon={faLock} color="#c5c5c5" />
                     </div>
                 </div>
                 <div className="additional-wrap" style={{ overflow: 'hidden' }}>
                     <input
+                        className="input"
                         id="name"
                         placeholder="* 이름 (본명을 입력하세요)"
                         style={{ borderTop: 0 }}
                         onChange={(e) => onChange(e)}
                     />
                     <input
+                        className="input"
                         id="nickname"
                         placeholder="닉네임 (모든 활동이 닉네임으로 노출됩니다)"
                         onChange={(e) => onChange(e)}

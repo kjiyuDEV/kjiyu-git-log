@@ -105,7 +105,7 @@ const Main = () => {
                                     <span className="title">{v.title}</span>
                                 </div>
                                 <div className="post-image">
-                                    <img src={`${v.fileUrl}`} />
+                                    <img className="post-main-image" src={`${v.fileUrl}`} />
                                 </div>
 
                                 <div className="content">{v.previewContents}</div>

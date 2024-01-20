@@ -34,9 +34,11 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     return (
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>
             {!isSearch ? (
-                <p onClick={() => history.push('/')}>kjiyu's git-log</p>
+                <p className="p" onClick={() => history.push('/')}>
+                    kjiyu's git-log
+                </p>
             ) : (
-                <input type="text" name="title" placeholder={'제목 및 내용을 입력해서 검색'} />
+                <input className="input" type="text" name="title" placeholder={'제목 및 내용을 입력해서 검색'} />
             )}
             <div className="right-box">
                 <div className="search" onClick={() => setIsSearch(!isSearch)}>

@@ -149,7 +149,7 @@
         display: -ms-flexbox;
         margin: 10px auto;
         align-items: center;
-        img {
+        .post-main-image {
             height: 100%;
             width: 100%;
             object-fit: cover;
@@ -181,7 +181,7 @@
         text-align: center;
     }
     form {
-        .default-wrap > div {
+        .default-wrap .input-wrap {
             width: 350px;
             position: relative;
         }
@@ -198,13 +198,13 @@
             border-radius: 10px;
             width: 350px;
             position: relative;
-            svg {
+            .svg {
                 /* border: solid 2px blue; */
                 left: 10px;
                 position: absolute;
                 top: 10px;
             }
-            input {
+            .input {
                 width: 100%;
                 background: rgba(0, 0, 0, 0);
                 height: 40px;
@@ -246,6 +246,7 @@
         width: 360px;
         /* border: solid 2px blue; */
         margin-top: 50px;
+        margin-left: 15px;
     }
 }
 /***************** 포스팅 *********************/
@@ -347,12 +348,14 @@
     justify-content: space-between;
     padding: 10px 0;
     border-top: solid 1px grey;
-    > div {
+    .left-wrap,
+    .share {
         display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
         margin: 0 15px;
-        div {
+        .likes,
+        .comments {
             margin-right: 20px;
             display: flex;
             display: -webkit-box;
