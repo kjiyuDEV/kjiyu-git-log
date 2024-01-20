@@ -1,8 +1,6 @@
 import logo from './logo.svg';
 import ReduxProvider from './provider';
-import './assets/css/common.css';
-import './assets/css/component.css';
-import './assets/css/reset.css';
+import './assets/css/content.css';
 import { Toaster } from 'react-hot-toast';
 import routes from './routes';
 import { Route, Switch } from 'react-router-dom';
