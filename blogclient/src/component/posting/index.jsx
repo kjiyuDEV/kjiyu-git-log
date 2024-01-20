@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build';
+import Base64UploaderPlugin from '../../@ckeditor/Base64Uploads';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { TYPE } from '../../redux/types';
@@ -9,8 +10,10 @@ import PostingHeader from './PostingHeader';
 const Posting = () => {
     const dispatch = useDispatch();
     const editorConfiguration = {
+        extraPlugins: [Base64UploaderPlugin],
         toolbar: [
-            'heading',
+            'fontSize',
+            'alignment',
             '|',
             'bold',
             'italic',
@@ -18,21 +21,11 @@ const Posting = () => {
             'strikethrough',
             'code',
             '|',
-            'fontSize',
             'fontColor',
             'fontBackgroundColor',
-            '|',
-            'alignment',
-            'outdent',
-            'indent',
-            'bulletedList',
-            'numberedList',
-            'blockQuote',
+            'imageUpload',
             '|',
             'link',
-            'insertTable',
-            'imageUpload',
-            'mediaEmbed',
             '|',
             'undo',
             'redo',
@@ -48,7 +41,7 @@ const Posting = () => {
         },
 
         fontSize: {
-            options: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 25, 27, 29, 31, 33, 35],
+            options: [10, 11, 12, 13, 14, 15, 16, 17, 18],
         },
 
         alignment: {
@@ -135,7 +128,7 @@ const Posting = () => {
             console.log(result_Img_Url, 'result_Img_Url');
             fileUrl = result_Img_Url;
         } else {
-            fileUrl = process.env.NEXT_PUBLIC_BASIC_SERVER_URL;
+            fileUrl = process.env.REACT_APP_BASIC_SERVER_URL;
         }
 
         const body = { title, contents, fileUrl, category, token, previewContents };

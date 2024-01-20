@@ -71,13 +71,13 @@ const Main = () => {
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
-                    {/* {auth.user && auth?.userRole !== 'User' && ( */}
-                    <div className="login" onClick={() => history.push('/posting')}>
-                        <div>
-                            <FontAwesomeIcon icon={faPen} />
+                    {auth.user && auth?.userRole !== 'User' && (
+                        <div className="login" onClick={() => history.push('/posting')}>
+                            <div>
+                                <FontAwesomeIcon icon={faPen} />
+                            </div>
                         </div>
-                    </div>
-                    {/* )} */}
+                    )}
                     <div className="login" onClick={handleModalOpen}>
                         <div>
                             <FontAwesomeIcon icon={auth.token ? faUser : faUserWhite} />
@@ -104,9 +104,11 @@ const Main = () => {
                                     </span>
                                     <span className="title">{v.title}</span>
                                 </div>
-                                <div className="post-image">
-                                    <img className="post-main-image" src={`${v.fileUrl}`} />
-                                </div>
+                                {v.fileUrl !== 'http://localhost:7000' && (
+                                    <div className="post-image">
+                                        <img className="post-main-image" src={`${v.fileUrl}`} />
+                                    </div>
+                                )}
 
                                 <div className="content">{v.previewContents}</div>
                             </div>

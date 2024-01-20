@@ -110,6 +110,7 @@
     padding: 10px;
     font-size: 13px;
     color: black;
+    cursor: pointer;
     .post-title {
         display: flex;
         display: -webkit-box;
@@ -130,7 +131,7 @@
         .title {
             font-size: 16px;
             font-weight: 600;
-            width: 210px;
+            width: 250px;
             text-wrap: nowrap;
             text-overflow: ellipsis;
             white-space: nowrap;

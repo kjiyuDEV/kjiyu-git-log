@@ -13,6 +13,7 @@ const Post = () => {
     const [liked, setLiked] = useState(false);
     const data = useSelector((state) => state.post.postDetail);
 
+    console.log(params, '<<<<<<<<<<<<<!!!!!!!!!!!!!!');
     useEffect(() => {
         dispatch({ type: TYPE.POST_DETAIL_LOADING_REQUEST, payload: params.id });
     }, []);
@@ -26,8 +27,8 @@ const Post = () => {
                 </div>
                 <div className="contents">
                     <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
-                    <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
-                    <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
+                    {/* <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
+                    <div dangerouslySetInnerHTML={{ __html: data.contents }}></div> */}
                 </div>
             </div>
             <div className="post-footer">
