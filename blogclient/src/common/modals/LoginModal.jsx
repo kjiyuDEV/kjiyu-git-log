@@ -74,27 +74,32 @@ const LoginModal = () => {
                 <div className="modal">
                     <ModalHeader />
                     <div className="input_wrap">
-                        <input type="text" placeholder="ID" name="userId" onChange={onChange} />
-                        <FontAwesomeIcon icon={faFaceSmile} color="#c5c5c5" />
+                        <input className="login-input" type="text" placeholder="ID" name="userId" onChange={onChange} />
+                        <FontAwesomeIcon className="login-svg" icon={faFaceSmile} color="#c5c5c5" />
 
                         <input
+                            className="login-input"
                             type={pwdHide ? 'password' : 'text'}
                             placeholder="Password"
                             name="password"
                             onChange={onChange}
                         />
-                        <FontAwesomeIcon icon={faLock} color="#c5c5c5" />
+                        <FontAwesomeIcon className="login-svg" icon={faLock} color="#c5c5c5" />
                         <FontAwesomeIcon
                             icon={pwdHide ? faEyeSlash : faEye}
-                            className="password_show"
+                            className="login-svg password_show"
                             color="#c5c5c5"
                             onClick={() => setPwdHide(!pwdHide)}
                         />
                     </div>
                     <p className="err_msg">{msg}</p>
                     <div className="btn-wrap">
-                        <button onClick={onSubmit}>로그인</button>
-                        <button onClick={handlesignUp}>회원가입</button>
+                        <button className="login-btn" onClick={onSubmit}>
+                            로그인
+                        </button>
+                        <button className="login-btn" onClick={handlesignUp}>
+                            회원가입
+                        </button>
                     </div>
                 </div>
             </div>
