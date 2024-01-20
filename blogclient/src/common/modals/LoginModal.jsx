@@ -94,10 +94,10 @@ const LoginModal = () => {
                     </div>
                     <p className="err_msg">{msg}</p>
                     <div className="btn-wrap">
-                        <button className="login-btn" onClick={onSubmit}>
+                        <button className="btn" onClick={onSubmit}>
                             로그인
                         </button>
-                        <button className="login-btn" onClick={handlesignUp}>
+                        <button className="btn" onClick={handlesignUp}>
                             회원가입
                         </button>
                     </div>

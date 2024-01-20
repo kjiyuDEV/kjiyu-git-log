@@ -2,10 +2,6 @@ import * as route from './route';
 
 const routes = [
     {
-        path: '/',
-        component: route.Main,
-    },
-    {
         path: '/signUp',
         component: route.SignUp,
     },
@@ -16,6 +12,10 @@ const routes = [
     {
         path: '/post/:id',
         component: route.Post,
+    },
+    {
+        path: '/',
+        component: route.Main,
     },
 ];
 

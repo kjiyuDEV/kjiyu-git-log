@@ -227,6 +227,7 @@ body {
             /* right: 10%; */
             text-align: right;
             margin: 10px 20px;
+            cursor: pointer;
         }
         .title {
             font-size: 15px;
@@ -269,7 +270,7 @@ body {
             display: -ms-flexbox;
             justify-content: center;
             font-size: 13px;
-            .login-btn {
+            .btn {
                 background: #cacaca;
                 padding: 5px 15px;
                 margin: 20px 10px;
@@ -280,7 +281,7 @@ body {
             }
         }
         .btn-wrap.solo-btn {
-            button {
+            .btn {
                 width: 130px;
             }
         }
