@@ -69,6 +69,8 @@
         position: relative;
         top: 80%;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         justify-content: flex-end;
         padding-right: 10px;
         > div {
@@ -76,6 +78,8 @@
             width: 30px;
             height: 30px;
             display: flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
             align-items: center;
             justify-content: center;
             background: rgba(245, 245, 245, 0.37);
@@ -108,8 +112,12 @@
     color: black;
     .post-title {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         .date {
             display: flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
             align-items: center;
             color: grey;
             width: 130px;
@@ -137,6 +145,8 @@
         width: 320px;
         height: 320px;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         margin: 10px auto;
         align-items: center;
         img {
@@ -165,7 +175,6 @@
 /***************** 회원가입 *********************/
 .signUp {
     position: absolute;
-    width: 100%;
     margin-top: 70px;
     padding: 0 20px;
     > p {
@@ -180,6 +189,8 @@
         .additional-wrap {
             border: solid 1px grey;
             display: flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
             flex-direction: column;
             align-items: center;
             justify-self: center;
@@ -241,6 +252,8 @@
 .posting-wrap {
     .posting-header {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         justify-content: space-between;
         align-items: center;
         /* padding: 10px; */
@@ -270,6 +283,8 @@
     }
     .category-wrap {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         align-items: center;
         padding-left: 30px;
         height: 60px;
@@ -322,6 +337,8 @@
 }
 .post-footer {
     display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -332,10 +349,14 @@
     border-top: solid 1px grey;
     > div {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         margin: 0 15px;
         div {
             margin-right: 20px;
             display: flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
             align-items: center;
             cursor: pointer;
             p {

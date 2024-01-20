@@ -85,6 +85,8 @@ body {
 .header {
     border-bottom: solid 1px grey;
     display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     align-items: center;
     justify-content: space-between;
     position: absolute;
@@ -108,6 +110,8 @@ body {
     .right-box {
         /* border:solid 2px red; */
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         /* width: 5vw; */
         justify-content: space-between;
         align-items: center;
@@ -137,6 +141,8 @@ body {
     z-index: 99;
     .header-wrapper {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         justify-content: space-between;
         align-items: center;
         padding: 20px;
@@ -152,12 +158,16 @@ body {
         border-bottom: solid 2px rgb(224, 224, 224);
         width: 100%;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: column;
         justify-content: center;
         /* align-items: center; */
         padding-left: 20px;
         > div {
             display: flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
             margin: 10px 0;
             align-items: center;
             .icon {
@@ -166,6 +176,8 @@ body {
                 height: 50px;
                 border-radius: 100px;
                 display: flex;
+                display: -webkit-box;
+                display: -ms-flexbox;
                 align-items: center;
                 justify-content: center;
                 svg {
@@ -237,7 +249,7 @@ body {
                 position: absolute;
                 left: 50px;
                 margin-left: 8px;
-                margin-top: -25.5px;
+                margin-top: -22.5px;
                 /* margin-top: 9px; */
             }
             svg.password_show {
@@ -254,6 +266,8 @@ body {
             width: 200px;
             margin: auto;
             display: flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
             justify-content: center;
             font-size: 13px;
             button {
