@@ -68,7 +68,7 @@ const SlideMenu = ({ hideMenu, setHideMenu }) => {
                     </div>
                 )}
                 <button onClick={() => handleClose()} className="close-btn">
-                    <FontAwesomeIcon icon={faXmark} fontSize="30px" />
+                    <FontAwesomeIcon icon={faXmark} fontSize="30px" color="black" />
                 </button>
             </div>
             <div className={`edit-wrapper ${auth.token ? 'user' : 'not-user'}`}>
@@ -76,20 +76,20 @@ const SlideMenu = ({ hideMenu, setHideMenu }) => {
                     <>
                         <div className="edit-user">
                             <div className="icon">
-                                <FontAwesomeIcon icon={faUserPen} fontSize={'20px'} />
+                                <FontAwesomeIcon className="svg" icon={faUserPen} fontSize={'20px'} />
                             </div>
-                            <p>회원정보 수정</p>
+                            <p className="p">회원정보 수정</p>
                         </div>
                         <div className="logout-user" onClick={() => handleModalOpen()}>
                             <div className="icon">
-                                <FontAwesomeIcon icon={faRightFromBracket} fontSize={'20px'} />
+                                <FontAwesomeIcon className="svg" icon={faRightFromBracket} fontSize={'20px'} />
                             </div>
-                            <p>로그아웃</p>
+                            <p className="p">로그아웃</p>
                         </div>
                     </>
                 ) : (
                     <>
-                        <p>회원가입을 하시면 다양한 권한이 주어져요.</p>
+                        <p className="p">회원가입을 하시면 다양한 권한이 주어져요.</p>
                     </>
                 )}
             </div>

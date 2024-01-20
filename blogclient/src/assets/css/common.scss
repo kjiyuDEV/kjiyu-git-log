@@ -95,11 +95,11 @@ body {
     width: 100%;
     height: 60px;
     top: -100px;
-    > p {
+    > .p {
         margin-left: 50px;
         font-size: 20px;
     }
-    input {
+    .input {
         border: solid 1px gainsboro;
         border-radius: 5px;
         width: 100%;
@@ -113,7 +113,8 @@ body {
         display: -ms-flexbox;
         justify-content: space-between;
         align-items: center;
-        > div {
+        .search,
+        .menu {
             margin: 0 15px;
             cursor: pointer;
         }
@@ -162,7 +163,8 @@ body {
         justify-content: center;
         /* align-items: center; */
         padding-left: 20px;
-        > div {
+        .edit-user,
+        .logout-user {
             display: flex;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -178,11 +180,11 @@ body {
                 display: -ms-flexbox;
                 align-items: center;
                 justify-content: center;
-                svg {
+                .svg {
                     color: white;
                 }
             }
-            p {
+            .p {
                 margin-left: 10px;
             }
         }
