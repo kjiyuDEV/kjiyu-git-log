@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import ReduxProvider from './provider';
 import './assets/css/content.css';
 import { Toaster } from 'react-hot-toast';
