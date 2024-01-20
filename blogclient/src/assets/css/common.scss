@@ -237,20 +237,19 @@ body {
             width: 200px;
             margin: auto;
             overflow: hidden;
-            input {
+            .login-input {
                 border: solid 1px #e7e7e7;
                 width: 100%;
                 height: 30px;
                 padding-left: 30px;
             }
-            svg {
+            .login-svg {
                 position: absolute;
                 left: 50px;
                 margin-left: 8px;
-                margin-top: -22.5px;
-                /* margin-top: 9px; */
+                margin-top: 8px;
             }
-            svg.password_show {
+            .password_show {
                 left: 210px;
             }
         }
@@ -268,7 +267,7 @@ body {
             display: -ms-flexbox;
             justify-content: center;
             font-size: 13px;
-            button {
+            .login-btn {
                 background: #cacaca;
                 padding: 5px 15px;
                 margin: 20px 10px;
