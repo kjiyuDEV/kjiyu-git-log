@@ -155,6 +155,11 @@ export const postReducer = (state = initialState, action) => {
                 searchResult: action.payload,
                 loading: false,
             };
+        case TYPE.POST_LIKE_SUCCESS:
+            return {
+                ...state,
+                postDetail: { ...state.postDetail, likes: action.payload.likes, likesCount: action.payload.likesCount },
+            };
         default:
             return state;
     }

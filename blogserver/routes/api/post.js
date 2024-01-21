@@ -231,7 +231,7 @@ router.get('/:id/edit', auth, async (req, res, next) => {
     }
 });
 
-router.post('/:id/edit', auth, async (req, res, next) => {
+router.post('/:id/edit', async (req, res, next) => {
     console.log(req, 'api/post/:id/edit');
     const {
         body: { title, contents, previewContents, fileUrl, id },
@@ -253,6 +253,45 @@ router.post('/:id/edit', auth, async (req, res, next) => {
         res.redirect(`/api/post/${modified_post.id}`);
     } catch (e) {
         console.log(e);
+        next(e);
+    }
+});
+
+// @route    GET api/post/:id/like
+// @desc     Edit Post
+// @access   Private
+router.post('/:id/likes', async (req, res, next) => {
+    const postId = req.params.id;
+    const userId = req.body.body.userId;
+    console.log(req.body, '<req');
+    console.log(userId, '<userId');
+    try {
+        const post = await Post.findById(postId);
+        console.log(post, '!<post>');
+        var likes = post.likes;
+        const likesCount = post.likesCount;
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        const userLikedPost = likes.includes(userId);
+
+        if (userLikedPost) {
+            // 이미 좋아요를 누른 경우, 좋아요 취소
+            likes = likes.filter((likeId) => likeId.toString() !== userId);
+            console.log(likes, '<<<<post.likes');
+        } else {
+            // 좋아요 추가
+            likes.push(userId);
+        }
+        console.log(likes, '<likes');
+        post.likes = likes;
+        post.likesCount = likes.length;
+
+        await post.save();
+        res.json(post);
+    } catch (e) {
+        console.error(e);
         next(e);
     }
 });

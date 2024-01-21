@@ -37,7 +37,7 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>
             {!isSearch ? (
                 <p className="p" onClick={() => history.push('/')}>
-                    kjiyu's git-log
+                    kjiyu's iroiro log
                 </p>
             ) : (
                 <input className="input" type="text" name="title" placeholder={'제목 및 내용을 입력해서 검색'} />

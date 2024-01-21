@@ -3,10 +3,10 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './redux/reducers/auth';
 import { modalReducer } from './redux/reducers/modal';
-import rootSaga from './redux/sagas';
 import createSagaMiddleware from 'redux-saga'; // redux-saga를 생성하기 위한 라이브러리
 import localStorage from 'redux-persist/es/storage';
 import { postReducer } from './redux/reducers/post';
+import rootSaga from './redux/sagas';
 
 const authInfo = {
     key: 'authInfo',

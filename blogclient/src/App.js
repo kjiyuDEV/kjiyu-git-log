@@ -15,6 +15,12 @@ function App() {
     const ref = useRef();
     const [hideMenu, setHideMenu] = useState(true);
 
+    if (process.env.NODE_ENV === 'production') {
+        console = window.console || {};
+        console.log = function no_console() {};
+        console.warn = function no_console() {};
+        console.error = function () {};
+    }
     return (
         <ReduxProvider>
             <Toaster
