@@ -98,8 +98,8 @@ const SignUp = () => {
 
     return (
         <div className="signUp">
-            <p>회원가입 회원정보 입력</p>
-            <form onSubmit={onSubmit}>
+            <p className="p">회원가입 회원정보 입력</p>
+            <form className="form" onSubmit={onSubmit}>
                 <div className="default-wrap" style={{ overflow: 'hidden' }}>
                     <div className="input-wrap">
                         <input
