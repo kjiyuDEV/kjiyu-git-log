@@ -12,7 +12,6 @@ const Post = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
-    const [liked, setLiked] = useState(false);
     const { auth, data } = useSelector((state) => {
         console.log(state);
         return {
@@ -21,7 +20,8 @@ const Post = () => {
             data: state.post.postDetail,
         };
     });
-    console.log(history);
+    console.log(data?.likes?.includes(auth.userId));
+    const [liked, setLiked] = useState(false);
     console.log(data, 'data');
     console.log(auth, '<auth');
 
@@ -41,6 +41,26 @@ const Post = () => {
         });
     };
 
+    const handleLikes = () => {
+        if (!auth.token) {
+            toast('로그인 후 이용할 수 있어요');
+            dispatch({
+                type: TYPE.OPEN_MODAL,
+                data: {
+                    type: 'login',
+                    title: '아이디와 비밀번호를 입력해주세요',
+                },
+            });
+            return;
+        }
+        const token = localStorage.getItem('token');
+        console.log({ id: params.id, userId: auth.userId, token });
+        dispatch({
+            type: TYPE.POST_LIKE_REQUEST,
+            payload: { id: params.id, userId: auth.userId, token },
+        });
+    };
+
     useEffect(() => {
         return () => {
             if (!history.location.pathname.includes('edit')) {
@@ -53,6 +73,12 @@ const Post = () => {
     useEffect(() => {
         dispatch({ type: TYPE.POST_DETAIL_LOADING_REQUEST, payload: params.id });
     }, []);
+
+    useEffect(() => {
+        setLiked(data?.likes?.includes(auth.userId));
+    }, [data.likes]);
+
+    console.log(data?.contents?.replaceAll('<img', '<img class="img"'));
 
     return (
         <>
@@ -74,21 +100,26 @@ const Post = () => {
                     )}
                 </div>
                 <div className="contents">
-                    <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
+                    <div
+                        className="content"
+                        dangerouslySetInnerHTML={{
+                            __html: data?.contents?.replaceAll('<img', '<img class="img"'),
+                        }}
+                    ></div>
                     {/* <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
                     <div dangerouslySetInnerHTML={{ __html: data.contents }}></div> */}
                 </div>
             </div>
             <div className="post-footer">
                 <div className="left-wrap">
-                    <div className="likes" onClick={() => setLiked(!liked)}>
+                    <div className="likes" onClick={handleLikes}>
                         {/* <FontAwesomeIcon icon={faHeart} fontSize={'25px'} /> */}
                         <FontAwesomeIcon
                             icon={liked ? faHeartFill : faHeart}
                             fontSize={'25px'}
                             color="rgb(237, 64, 107)"
                         />
-                        <p>{2}</p>
+                        <p>{data.likesCount}</p>
                     </div>
                     <div className="comments">
                         <FontAwesomeIcon icon={faComment} fontSize={'25px'} />

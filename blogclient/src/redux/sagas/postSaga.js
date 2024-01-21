@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { TYPE } from '../types';
 import { push } from 'connected-react-router';
+import { TYPE } from '../types';
 
 // 🌈🌈🌈 포스트 조회 🌈🌈🌈
 const loadPostAPI = (payload) => {
@@ -247,9 +247,39 @@ function* SearchResult(action) {
         // yield put(push('/'));
     }
 }
-
 function* watchSearchResult() {
     yield takeEvery(TYPE.SEARCH_REQUEST, SearchResult);
+}
+
+// 🌈🌈🌈 좋아요 🌈🌈🌈
+const LikeAPI = (payload) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: payload,
+    };
+    return axios.post(`/api/post/${payload.id}/likes`, config);
+};
+
+function* LikeResult(action) {
+    try {
+        const result = yield call(LikeAPI, action.payload);
+        yield put({
+            type: TYPE.POST_LIKE_SUCCESS,
+            payload: result.data,
+        });
+        // yield put(push(`/search/${encodeURIComponent(action.payload)}`));
+    } catch (e) {
+        yield put({
+            type: TYPE.POST_LIKE_FAILURE,
+            payload: e,
+        });
+        // yield put(push('/'));
+    }
+}
+function* watchLikes() {
+    yield takeEvery(TYPE.POST_LIKE_REQUEST, LikeResult);
 }
 
 export default function* postSaga() {
@@ -262,5 +292,6 @@ export default function* postSaga() {
         fork(watchPostEditUpload),
         fork(watchCategoryFind),
         fork(watchSearchResult),
+        fork(watchLikes),
     ]);
 }
