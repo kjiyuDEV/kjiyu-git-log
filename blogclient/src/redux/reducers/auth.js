@@ -10,7 +10,7 @@ const initialState = {
     userId: '',
     name: '',
     nickname: '',
-    userRole: '',
+    role: '',
     errorMsg: '',
     successMsg: '',
 };
@@ -35,7 +35,7 @@ export const authReducer = (state = initialState, action) => {
                 isAuthenticated: true,
                 isLoading: true,
                 userId: action.payload.user.id,
-                userRole: action.payload.user.role,
+                role: action.payload.user.role,
                 errorMsg: '',
             });
 
@@ -48,7 +48,7 @@ export const authReducer = (state = initialState, action) => {
                 userId: null,
                 isAuthenticated: false,
                 isLoading: false,
-                userRole: null,
+                role: null,
                 errorMsg: '',
             });
 
@@ -64,7 +64,7 @@ export const authReducer = (state = initialState, action) => {
                 userId: null,
                 isAuthenticated: false,
                 isLoading: false,
-                userRole: null,
+                role: null,
                 // errorMsg: action.payload.data.msg,
                 errorMsg: action.payload.data.msg,
             });

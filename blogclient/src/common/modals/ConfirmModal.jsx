@@ -13,6 +13,9 @@ const ConfirmModal = () => {
 
     const handleConfirm = () => {
         confirmModal.data.handleConfirm();
+        dispatch({
+            type: TYPE.CLOSE_CONFIRM_MODAL,
+        });
     };
 
     const handleCancel = () => {

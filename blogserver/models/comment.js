@@ -8,7 +8,7 @@ const CommentSchema = new mongoose.Schema({
     },
     date: {
         type: String,
-        default: moment().format('YYYY-MM-DD HH:MM'),
+        default: moment().format('YYYY-MM-DD HH:mm'),
     },
     post: {
         type: mongoose.Schema.Types.ObjectId,

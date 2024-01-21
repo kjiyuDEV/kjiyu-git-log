@@ -2,24 +2,37 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const Header = ({ hideMenu, setHideMenu, scroll }) => {
+const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
+    const params = useParams();
     const history = useHistory();
-
+    const [scroll, setScroll] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
     const [fixedHeader, setFixedHeader] = useState(false);
 
+    const handleScroll = useCallback((e) => {
+        if (wrapRef?.current?.scrollTop > 0) {
+            setScroll(true);
+        } else {
+            setScroll(false);
+        }
+    }, []);
+
     console.log(history);
 
-    console.log(window);
+    useEffect(() => {
+        if (wrapRef?.current) {
+            wrapRef.current.addEventListener('scroll', handleScroll);
+            // return () => wrapRef.current.removeEventListener('scroll', handleScroll);
+        }
+    }, [wrapRef?.current]);
 
     useEffect(() => {
         const postId = history.location.pathname.substring('/post/'.length);
         setFixedHeader([`/signUp`, `/post/${postId}`].includes(history.location.pathname));
-    }, [window.location.pathname]);
-    console.log(fixedHeader, scroll);
+    }, [history.location.pathname]);
+
     return (
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>
             {!isSearch ? (

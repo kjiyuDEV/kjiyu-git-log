@@ -11,6 +11,7 @@ const Main = () => {
     const history = useHistory();
     const { posts, postCount } = useSelector((state) => state.post);
     const { auth } = useSelector((state) => {
+        console.log(state);
         return {
             auth: state.auth,
         };
@@ -71,7 +72,7 @@ const Main = () => {
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
-                    {auth.user && auth?.userRole !== 'User' && (
+                    {auth.user && auth?.role !== 'User' && (
                         <div className="login" onClick={() => history.push('/posting')}>
                             <div>
                                 <FontAwesomeIcon icon={faPen} />
@@ -93,28 +94,30 @@ const Main = () => {
             </div>
             <ol className="main-posts">
                 <p style={{ marginLeft: '10px' }}>총 {postCount}개의 글</p>
-                {posts.map((v) => {
-                    return (
-                        <li key={v.id} className="post-card" onClick={() => history.push(`/post/${v._id}`)}>
-                            <div>
-                                <div className="post-title">
-                                    <span className="date">
-                                        {v.date.split(' ')[0]}
-                                        <span className="time">{v.date.split(' ')[1]}</span>
-                                    </span>
-                                    <span className="title">{v.title}</span>
-                                </div>
-                                {v.fileUrl !== 'http://localhost:7000' && (
-                                    <div className="post-image">
-                                        <img className="post-main-image" src={`${v.fileUrl}`} />
-                                    </div>
-                                )}
 
-                                <div className="content">{v.previewContents}</div>
-                            </div>
-                        </li>
-                    );
-                })}
+                {posts &&
+                    posts?.map((v) => {
+                        return (
+                            <li key={v.id} className="post-card" onClick={() => history.push(`/post/${v._id}`)}>
+                                <div>
+                                    <div className="post-title">
+                                        <span className="date">
+                                            {v.date.split(' ')[0]}
+                                            <span className="time">{v.date.split(' ')[1]}</span>
+                                        </span>
+                                        <span className="title">{v.title}</span>
+                                    </div>
+                                    {v.fileUrl !== 'http://localhost:7000' && (
+                                        <div className="post-image">
+                                            <img className="post-main-image" src={`${v.fileUrl}`} />
+                                        </div>
+                                    )}
+
+                                    <div className="content">{v.previewContents}</div>
+                                </div>
+                            </li>
+                        );
+                    })}
             </ol>
         </>
     );
