@@ -9,18 +9,11 @@ import Header from './common/Header';
 import SlideMenu from './common/SlideMenu';
 import LoginModal from './common/modals/LoginModal';
 import ConfirmModal from './common/modals/ConfirmModal';
+import { useSelector } from 'react-redux';
 
 function App() {
     const ref = useRef();
     const [hideMenu, setHideMenu] = useState(true);
-    const [scroll, setScroll] = useState(true);
-    const handleOnWheel = (e) => {
-        if (e.nativeEvent.wheelDelta > 0) {
-            setScroll(true);
-        } else {
-            setScroll(false);
-        }
-    };
 
     return (
         <ReduxProvider>
@@ -37,10 +30,10 @@ function App() {
                 }}
             />
             <div className="main-wrap">
-                <BrowserRouter>
-                    <div className="wrap" onWheel={handleOnWheel} ref={ref}>
+                <div className="wrap" ref={ref}>
+                    <BrowserRouter>
                         {!hideMenu && <SlideMenu hideMenu={hideMenu} setHideMenu={setHideMenu} />}
-                        <Header wrapRef={ref} scroll={scroll} hideMenu={hideMenu} setHideMenu={setHideMenu} />
+                        <Header wrapRef={ref} hideMenu={hideMenu} setHideMenu={setHideMenu} />
                         <Switch>
                             {routes.map((route, idx) => {
                                 console.log(route);
@@ -49,8 +42,8 @@ function App() {
                         </Switch>
                         <ConfirmModal />
                         <LoginModal />
-                    </div>
-                </BrowserRouter>
+                    </BrowserRouter>
+                </div>
             </div>
         </ReduxProvider>
     );

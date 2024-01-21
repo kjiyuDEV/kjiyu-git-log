@@ -54,7 +54,7 @@ export const postReducer = (state = initialState, action) => {
         case TYPE.POST_DETAIL_LOADING_REQUEST:
             return {
                 ...state,
-                posts: [],
+                // posts: [],
                 loading: true,
             };
         case TYPE.POST_DETAIL_LOADING_SUCCESS:
@@ -63,6 +63,14 @@ export const postReducer = (state = initialState, action) => {
                 postDetail: action.payload,
                 creatorId: action.payload.creator._id,
                 title: action.payload.title,
+                loading: false,
+            };
+        case TYPE.POST_DETAIL_RESET:
+            return {
+                ...state,
+                postDetail: '',
+                creatorId: '',
+                title: '',
                 loading: false,
             };
         case TYPE.POST_DETAIL_LOADING_FAILURE:

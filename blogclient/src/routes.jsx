@@ -6,7 +6,7 @@ const routes = [
         component: route.SignUp,
     },
     {
-        path: '/posting',
+        path: ['/posting', '/posting/edit/:id'],
         component: route.Posting,
     },
     {

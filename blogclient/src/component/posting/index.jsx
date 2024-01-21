@@ -3,12 +3,31 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build';
 import Base64UploaderPlugin from '../../@ckeditor/Base64Uploads';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams, withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { TYPE } from '../../redux/types';
 import PostingHeader from './PostingHeader';
+import toast from 'react-hot-toast';
+import moment from 'moment';
 
 const Posting = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
+    const params = useParams();
+    const { postData } = useSelector((state) => {
+        console.log(state);
+        return {
+            postData: state.post.postDetail,
+        };
+    });
+
+    const [form, setForm] = useState({
+        title: postData.title || null,
+        contents: postData.contents || null,
+        previewContents: null,
+        category: postData?.category?.categoryName || '일상',
+        fileUrl: '',
+    });
+    console.log(postData, '<postData!');
     const editorConfiguration = {
         extraPlugins: [Base64UploaderPlugin],
         toolbar: [
@@ -67,14 +86,6 @@ const Posting = () => {
         placeholder: '내용을 입력하세요',
     };
 
-    const [form, setForm] = useState({
-        title: null,
-        contents: null,
-        previewContents: null,
-        category: '일상',
-        fileUrl: '',
-    });
-
     const onSubmit = async (e) => {
         await e.preventDefault();
         console.log(Object.keys(form).find((v) => form[v] === null));
@@ -132,13 +143,26 @@ const Posting = () => {
         }
 
         const body = { title, contents, fileUrl, category, token, previewContents };
-
-        dispatch({
-            type: TYPE.POST_UPLOADING_REQUEST,
-            payload: body,
-        });
+        console.log(body);
+        if (!postData._id) {
+            // 새 게시글
+            dispatch({
+                type: TYPE.POST_UPLOADING_REQUEST,
+                payload: body,
+            });
+            history.push('/');
+            toast('게시글을 작성하였습니다.');
+        } else {
+            // 편집 게시글
+            dispatch({
+                type: TYPE.POST_EDIT_UPLOADING_REQUEST,
+                payload: { ...body, id: postData._id },
+            });
+            history.push(`/post/${params.id}`);
+            toast('게시글을 수정하였습니다.');
+        }
     };
-
+    console.log(postData, '<postDatapostDatapostData');
     // Myinit();
 
     const handleChange = (event, editor) => {
@@ -160,6 +184,7 @@ const Posting = () => {
             <PostingHeader onSubmit={onSubmit} />
             <div className="title-wrap">
                 <input
+                    value={form.title}
                     placeholder="제목"
                     onChange={(e) => {
                         setForm({ ...form, title: e.target.value });
@@ -179,7 +204,7 @@ const Posting = () => {
                     // 필요하면 다른 설정을 추가할 수 있습니다.
                 }}
                 config={editorConfiguration}
-                data=""
+                data={form.contents || ''}
             />
             <div className="category-wrap">
                 <p>카테고리</p>
