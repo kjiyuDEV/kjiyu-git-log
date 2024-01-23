@@ -290,3 +290,79 @@ body {
         }
     }
 }
+
+.slideUp-wrapper {
+    position: absolute;
+    z-index: 1000;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.596);
+    top: 0;
+    .slideUp {
+        position: absolute;
+        bottom: 0;
+        background: white;
+        width: 100%;
+        .slideUp-header {
+            height: 5vh;
+            font-size: 17px;
+            border-bottom: solid 1px rgb(155, 155, 155);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .close {
+                font-size: 13px;
+                border: solid 1px rgb(199, 199, 199);
+                padding: 5px 10px;
+            }
+        }
+        .content {
+            padding: 0px 20px;
+            height: 50vh;
+            overflow-y: scroll;
+            .comment-box {
+                padding: 20px 0;
+                border-bottom: solid 1px rgb(214, 214, 214);
+                .user-name {
+                    font-weight: 700;
+                }
+                .date {
+                    font-size: 11px;
+                    color: grey;
+                }
+            }
+        }
+        .input-wrapper {
+            height: 10vh;
+            border-top: solid 1px rgb(168, 168, 168);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .input {
+                width: 250px;
+                border: solid 1px rgb(148, 148, 148);
+                height: 40px;
+                padding: 0 10px;
+            }
+            .button {
+                border: solid 1px grey;
+                height: 40px;
+                padding: 10px 20px;
+                margin-left: 10px;
+            }
+            .button.active {
+                background: grey;
+                color: white;
+            }
+        }
+    }
+    .slideUp.active {
+        animation: slideup-active-animation 0.4s ease;
+        bottom: none;
+    }
+    .slideUp.inactive {
+        animation: slideup-inactive-animation 0.4s ease;
+        bottom: -1000px;
+    }
+}

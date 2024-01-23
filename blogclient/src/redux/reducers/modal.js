@@ -17,6 +17,12 @@ const initialState = {
             txtConfirm: '예',
         },
     },
+    slideUp: {
+        open: false,
+        data: {
+            type: '',
+        },
+    },
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -49,6 +55,21 @@ export const modalReducer = (state = initialState, action) => {
                 ...state,
                 confirmModal: {
                     ...initialState.confirmModal,
+                },
+            });
+        case 'OPEN_SLIDEUP':
+            return Object.assign({}, state, {
+                ...state,
+                slideUp: {
+                    open: true,
+                    data: action.data,
+                },
+            });
+        case 'CLOSE_SLIDEUP':
+            return Object.assign({}, state, {
+                ...state,
+                slideUp: {
+                    ...initialState.modal,
                 },
             });
         default:

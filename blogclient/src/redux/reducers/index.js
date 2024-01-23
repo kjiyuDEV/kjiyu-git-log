@@ -7,6 +7,7 @@ import { combineReducers } from 'redux';
 import user from './auth';
 import modal from './modal';
 import post from './post';
+import comments from './comments';
 
 const reducer = (state, action) => {
     return combineReducers({
@@ -14,6 +15,7 @@ const reducer = (state, action) => {
         user,
         modal,
         post,
+        comments,
         // 리듀서 모듈(slice)을 추가할 때마다 combineReducers 함수의 인자로 전달되는 객체 내부에 추가해줘야함
     })(state, action);
 };

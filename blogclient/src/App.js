@@ -10,6 +10,7 @@ import SlideMenu from './common/SlideMenu';
 import LoginModal from './common/modals/LoginModal';
 import ConfirmModal from './common/modals/ConfirmModal';
 import { useSelector } from 'react-redux';
+import SlideUp from './common/slideUps/SlideUp';
 
 function App() {
     const ref = useRef();
