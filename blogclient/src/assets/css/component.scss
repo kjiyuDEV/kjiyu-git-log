@@ -180,26 +180,26 @@
         }
         .content {
             margin-top: 5px;
+            line-height: 17px;
+            max-height: 50px;
+            word-break: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 13px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            align-items: center;
+            justify-content: center;
         }
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        align-items: center;
-        font-size: 13px;
-        justify-content: center;
-        max-height: 60px;
         width: 320px;
         margin: 10px auto;
         /* border: solid 2px blue; */
-        word-break: break-word;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 17px;
     }
     .bottom-info {
         width: 320px;
         display: flex;
-        margin: 10px auto;
+        margin: 15px auto;
         .likes,
         .comments {
             display: flex;
