@@ -5,6 +5,9 @@ import { TYPE } from '../../redux/types';
 import { faUser as faUserWhite } from '@fortawesome/free-regular-svg-icons';
 import { faPen, faShare, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useHistory, withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import moment from 'moment';
+import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -58,6 +61,7 @@ const Main = () => {
     }, []);
 
     console.log(document.getElementsByTagName('figure'));
+    console.log(moment().add(13, 'hours').format('YYYY-MM-DD HH:mm'));
     return (
         <>
             <div className="banner">
@@ -72,7 +76,7 @@ const Main = () => {
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
-                    {auth.user && auth?.role !== 'User' && (
+                    {auth?.user?.role === 'MainMaster' && (
                         <div className="login" onClick={() => history.push('/posting')}>
                             <div>
                                 <FontAwesomeIcon icon={faPen} />
@@ -105,15 +109,32 @@ const Main = () => {
                                             {v.date.split(' ')[0]}
                                             <span className="time">{v.date.split(' ')[1]}</span>
                                         </span>
-                                        <span className="title">{v.title}</span>
                                     </div>
                                     {v.fileUrl !== 'http://localhost:7000' && (
                                         <div className="post-image">
                                             <img className="post-main-image" src={`${v.fileUrl}`} />
                                         </div>
                                     )}
-
-                                    <div className="content">{v.previewContents}</div>
+                                    <div className="contents">
+                                        <p className="title">{v.title}</p>
+                                        <p className="content">{v.previewContents}</p>
+                                    </div>
+                                </div>
+                                <div className="bottom-info">
+                                    <div className="likes">
+                                        {/* <FontAwesomeIcon icon={faHeart} fontSize={'25px'} /> */}
+                                        <FontAwesomeIcon
+                                            icon={true ? faHeartFill : faHeart}
+                                            fontSize={'25px'}
+                                            color="rgb(237, 64, 107)"
+                                        />
+                                        <p className="count">{v.likesCount}</p>
+                                    </div>
+                                    <div className="comments">
+                                        {/* <FontAwesomeIcon icon={faHeart} fontSize={'25px'} /> */}
+                                        <FontAwesomeIcon icon={faComment} fontSize={'25px'} />
+                                        <p className="count">{v.comments?.length}</p>
+                                    </div>
                                 </div>
                             </li>
                         );

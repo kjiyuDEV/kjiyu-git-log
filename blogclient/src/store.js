@@ -7,6 +7,7 @@ import createSagaMiddleware from 'redux-saga'; // redux-saga를 생성하기 위
 import localStorage from 'redux-persist/es/storage';
 import { postReducer } from './redux/reducers/post';
 import rootSaga from './redux/sagas';
+import commentReducer from './redux/reducers/comment';
 
 const authInfo = {
     key: 'authInfo',
@@ -17,6 +18,7 @@ const reducer = combineReducers({
     auth: authReducer,
     modals: modalReducer,
     post: postReducer,
+    comment: commentReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

@@ -7,17 +7,19 @@ import { faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons';
 import { useHistory, useParams, withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { TYPE } from '../../redux/types';
 import toast from 'react-hot-toast';
+import SlideUp from './slideUp/CommnetSlideUp';
 
 const Post = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
-    const { auth, data } = useSelector((state) => {
+    const { auth, data, slideUp } = useSelector((state) => {
         console.log(state);
         return {
             confirmModal: state.modals.confirmModal,
             auth: state.auth,
             data: state.post.postDetail,
+            slideUp: state.modals.slideUp,
         };
     });
     console.log(data?.likes?.includes(auth.userId));
@@ -58,6 +60,12 @@ const Post = () => {
         dispatch({
             type: TYPE.POST_LIKE_REQUEST,
             payload: { id: params.id, userId: auth.userId, token },
+        });
+    };
+
+    const handleComments = () => {
+        dispatch({
+            type: TYPE.OPEN_SLIDEUP,
         });
     };
 
@@ -119,16 +127,19 @@ const Post = () => {
                             fontSize={'25px'}
                             color="rgb(237, 64, 107)"
                         />
-                        <p>{data.likesCount}</p>
+                        <p className="likes-count">{data.likesCount}</p>
                     </div>
-                    <div className="comments">
+                    <div className="comments" onClick={handleComments}>
                         <FontAwesomeIcon icon={faComment} fontSize={'25px'} />
+                        <p className="likes-count">{data?.comments?.length}</p>
                     </div>
                 </div>
                 <div className="share">
                     <FontAwesomeIcon icon={faShare} fontSize={'25px'} />
                 </div>
             </div>
+
+            {slideUp.open && <SlideUp />}
         </>
     );
 };

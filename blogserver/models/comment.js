@@ -18,6 +18,10 @@ const CommentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
+    creatorName: {
+        type: String,
+        required: true,
+    },
 });
 
 const Comment = mongoose.model('comment', CommentSchema);
