@@ -5,6 +5,7 @@ import { TYPE } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { removeExp } from '../../assets/utils/signup';
 
 const SignUp = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,8 @@ const SignUp = () => {
 
     const onChange = (e) => {
         let { value, id } = e.target;
+        removeExp(value);
+        console.log(value);
         if (value === '') {
             value = null;
         }
@@ -38,7 +41,7 @@ const SignUp = () => {
                 setMsg(null);
             }
         }
-        setForm({ ...form, [id]: value });
+        setForm({ ...form, [id]: removeExp(value) });
     };
 
     const onSubmit = (e) => {
@@ -108,6 +111,7 @@ const SignUp = () => {
                             style={{ borderTop: 0 }}
                             onChange={(e) => onChange(e)}
                             className="input"
+                            value={form.userId}
                         />
 
                         <FontAwesomeIcon className="svg" icon={faFaceSmile} color="#c5c5c5" />
@@ -118,6 +122,7 @@ const SignUp = () => {
                             id="password"
                             type="password"
                             placeholder="* 비밀번호"
+                            value={form.password}
                             onChange={(e) => onChange(e)}
                         />
                         <FontAwesomeIcon className="svg" icon={faLock} color="#c5c5c5" />
@@ -127,6 +132,7 @@ const SignUp = () => {
                             className="input"
                             id="passwordChk"
                             type="password"
+                            value={form.passwordChk}
                             placeholder="* 비밀번호 재입력"
                             onChange={(e) => onChange(e)}
                         />
@@ -138,12 +144,14 @@ const SignUp = () => {
                         className="input"
                         id="name"
                         placeholder="* 이름 (본명을 입력하세요)"
+                        value={form.name}
                         style={{ borderTop: 0 }}
                         onChange={(e) => onChange(e)}
                     />
                     <input
                         className="input"
                         id="nickname"
+                        value={form.nickname}
                         placeholder="닉네임 (모든 활동이 닉네임으로 노출됩니다)"
                         onChange={(e) => onChange(e)}
                     />

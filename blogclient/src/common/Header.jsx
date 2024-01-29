@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -30,11 +30,21 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
 
     useEffect(() => {
         const postId = history.location.pathname.substring('/post/'.length);
-        setFixedHeader([`/signUp`, `/post/${postId}`].includes(history.location.pathname));
+        setFixedHeader([`/signUp`, `/post/${postId}`, '/guestBook'].includes(history.location.pathname));
     }, [history.location.pathname]);
 
     return (
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>
+            {history.location.pathname !== '/' && (
+                <p
+                    className="go-back"
+                    onClick={() => {
+                        history.goBack(-1);
+                    }}
+                >
+                    <FontAwesomeIcon icon={faArrowLeft} fontSize={'20px'} />
+                </p>
+            )}
             {!isSearch ? (
                 <p className="p" onClick={() => history.push('/')}>
                     kjiyu's iroiro log

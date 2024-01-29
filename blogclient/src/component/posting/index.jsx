@@ -24,7 +24,7 @@ const Posting = () => {
         title: postData.title || null,
         contents: postData.contents || null,
         previewContents: null,
-        category: postData?.category?.categoryName || '일상',
+        category: '개발기록',
         fileUrl: '',
     });
     console.log(postData, '<postData!');

@@ -13,13 +13,14 @@ const Post = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
-    const { auth, data, slideUp } = useSelector((state) => {
+    const { auth, data, slideUp, comment } = useSelector((state) => {
         console.log(state);
         return {
             confirmModal: state.modals.confirmModal,
             auth: state.auth,
             data: state.post.postDetail,
             slideUp: state.modals.slideUp,
+            comment: state.comment,
         };
     });
     console.log(data?.likes?.includes(auth.userId));
@@ -80,11 +81,16 @@ const Post = () => {
 
     useEffect(() => {
         dispatch({ type: TYPE.POST_DETAIL_LOADING_REQUEST, payload: params.id });
-    }, []);
+    }, [comment]);
 
     useEffect(() => {
         setLiked(data?.likes?.includes(auth.userId));
     }, [data.likes]);
+
+    useEffect(() => {
+        data?.contents?.replaceAll('<img', '<img class="img"');
+        data?.contents?.replaceAll('<code', '<code class="code"');
+    }, [data?.contents]);
 
     console.log(data?.contents?.replaceAll('<img', '<img class="img"'));
 
@@ -92,7 +98,7 @@ const Post = () => {
         <>
             <div className="post-wrap">
                 <div className="title-wrap">
-                    <p className="category">{data?.category?.categoryName || '일상'}</p>
+                    <p className="category">{data?.category?.categoryName}</p>
                     <p className="title">{data.title}</p>
                     <p className="date">{data.date}</p>
 
@@ -111,7 +117,9 @@ const Post = () => {
                     <div
                         className="content"
                         dangerouslySetInnerHTML={{
-                            __html: data?.contents?.replaceAll('<img', '<img class="img"'),
+                            __html: data?.contents
+                                ?.replaceAll('<img', '<img class="img"')
+                                ?.replaceAll('<p><code', '<p class="code-wrap"><code class="code"'),
                         }}
                     ></div>
                     {/* <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
