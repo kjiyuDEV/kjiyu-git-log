@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TYPE } from '../../redux/types';
 import { faUser as faUserWhite } from '@fortawesome/free-regular-svg-icons';
-import { faPen, faShare, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faMessage, faPen, faShare, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useHistory, withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import moment from 'moment';
 import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -12,7 +12,7 @@ import { faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons';
 const Main = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { posts, postCount } = useSelector((state) => state.post);
+    const { posts } = useSelector((state) => state.post);
     const { auth } = useSelector((state) => {
         console.log(state);
         return {
@@ -56,6 +56,15 @@ const Main = () => {
         dispatch({ type: TYPE.POSTS_LOADING_REQUEST, payload: 0 });
     };
 
+    const handleCategory = (e) => {
+        const ctgrTxt = e.target.options[e.target.selectedIndex].text;
+        if (ctgrTxt !== '전체글') {
+            dispatch({ type: TYPE.CATEGORY_FIND_REQUEST, payload: ctgrTxt });
+        } else {
+            initFetch();
+        }
+    };
+
     useEffect(() => {
         initFetch();
     }, []);
@@ -76,6 +85,13 @@ const Main = () => {
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
+                    {/* {auth.token && (
+                        <div className="login" onClick={() => history.push('/guestBook')}>
+                            <div>
+                                <FontAwesomeIcon icon={faMessage} />
+                            </div>
+                        </div>
+                    )} */}
                     {auth?.user?.role === 'MainMaster' && (
                         <div className="login" onClick={() => history.push('/posting')}>
                             <div>
@@ -97,8 +113,16 @@ const Main = () => {
                 </div>
             </div>
             <ol className="main-posts">
-                <p style={{ marginLeft: '10px' }}>총 {postCount}개의 글</p>
-
+                <div className="main-top">
+                    <p className="post-count">총 {posts?.length}개의 글</p>
+                    <div className="category">
+                        <select className="select" onChange={handleCategory}>
+                            <option>전체글</option>
+                            <option name="일상">일상</option>
+                            <option name="개발기록">개발기록</option>
+                        </select>
+                    </div>
+                </div>
                 {posts &&
                     posts?.map((v) => {
                         return (

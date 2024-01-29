@@ -126,13 +126,13 @@ export const postReducer = (state = initialState, action) => {
         case TYPE.CATEGORY_FIND_SUCCESS:
             return {
                 ...state,
-                categoryFindResult: action.payload,
+                posts: action.payload.posts,
                 loading: false,
             };
         case TYPE.CATEGORY_FIND_FAILURE:
             return {
                 ...state,
-                categoryFindResult: action.payload,
+                posts: action.payload.posts,
                 loading: false,
             };
         case TYPE.SEARCH_REQUEST:
