@@ -127,12 +127,23 @@
         justify-content: space-between;
         padding: 0px 15px;
         font-size: 13px;
+        position: relative;
         .select {
             height: 30px;
             width: 90px;
             border: none;
             padding: 0 5px;
             background: rgba(255, 255, 255, 0);
+            color: black;
+            -webkit-appearance: none; /* Safari/Chrome/Blink 제거 */
+            -moz-appearance: none; /* Firefox 제거 */
+            appearance: none; /* 다른 브라우저 제거 */
+            background-image: none; /* 배경 이미지 제거 */
+        }
+        .svg {
+            position: absolute;
+            right: 20px;
+            top: 8px;
         }
     }
 }
