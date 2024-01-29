@@ -116,6 +116,7 @@ const Main = () => {
                 <div className="main-top">
                     <p className="post-count">총 {posts?.length}개의 글</p>
                     <div className="category">
+                        <FontAwesomeIcon className="svg" icon={faChevronDown} />
                         <select className="select" onChange={handleCategory}>
                             <option>전체글</option>
                             <option name="일상">일상</option>
