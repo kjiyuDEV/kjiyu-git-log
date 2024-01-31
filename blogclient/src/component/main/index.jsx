@@ -12,11 +12,13 @@ import { faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons';
 const Main = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { posts } = useSelector((state) => state.post);
-    const { auth } = useSelector((state) => {
+
+    const { auth, posts, post } = useSelector((state) => {
         console.log(state);
         return {
             auth: state.auth,
+            posts: state.post.posts,
+            post: state.post,
         };
     });
 
@@ -68,7 +70,13 @@ const Main = () => {
     useEffect(() => {
         initFetch();
     }, []);
-
+    useEffect(() => {
+        if (post.loading) {
+            dispatch({ type: 'START_LOADING' });
+        } else {
+            dispatch({ type: 'STOP_LOADING' });
+        }
+    }, [post.loading]);
     console.log(document.getElementsByTagName('figure'));
     console.log(moment().add(13, 'hours').format('YYYY-MM-DD HH:mm'));
     return (

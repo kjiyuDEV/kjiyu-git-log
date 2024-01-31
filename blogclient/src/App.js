@@ -11,6 +11,7 @@ import LoginModal from './common/modals/LoginModal';
 import ConfirmModal from './common/modals/ConfirmModal';
 import { useSelector } from 'react-redux';
 import SlideUp from './common/slideUps/SlideUp';
+import Loading from './common/Loading';
 
 function App() {
     const ref = useRef();
@@ -36,8 +37,10 @@ function App() {
                     duration: '300',
                 }}
             />
+
             <div className="main-wrap">
                 <div className="wrap" ref={ref}>
+                    <Loading />
                     <BrowserRouter>
                         {!hideMenu && <SlideMenu hideMenu={hideMenu} setHideMenu={setHideMenu} />}
                         <Header wrapRef={ref} hideMenu={hideMenu} setHideMenu={setHideMenu} />

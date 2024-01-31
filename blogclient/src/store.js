@@ -8,6 +8,7 @@ import localStorage from 'redux-persist/es/storage';
 import { postReducer } from './redux/reducers/post';
 import rootSaga from './redux/sagas';
 import commentReducer from './redux/reducers/comment';
+import { loadingReducer } from './redux/reducers/loading';
 
 const authInfo = {
     key: 'authInfo',
@@ -19,6 +20,7 @@ const reducer = combineReducers({
     modals: modalReducer,
     post: postReducer,
     comment: commentReducer,
+    loading: loadingReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
