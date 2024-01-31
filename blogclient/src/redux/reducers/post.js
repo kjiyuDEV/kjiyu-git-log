@@ -89,7 +89,6 @@ export const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postDetail: action.payload,
-
                 loading: false,
             };
         case TYPE.POST_EDIT_LOADING_FAILURE:

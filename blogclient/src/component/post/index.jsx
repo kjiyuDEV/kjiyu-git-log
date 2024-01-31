@@ -18,12 +18,11 @@ const Post = () => {
         return {
             confirmModal: state.modals.confirmModal,
             auth: state.auth,
-            data: state.post.postDetail,
+            data: state.post,
             slideUp: state.modals.slideUp,
             comment: state.comment,
         };
     });
-    console.log(data?.likes?.includes(auth.userId));
     const [liked, setLiked] = useState(false);
     console.log(data, 'data');
     console.log(auth, '<auth');
@@ -84,13 +83,21 @@ const Post = () => {
     }, [comment]);
 
     useEffect(() => {
-        setLiked(data?.likes?.includes(auth.userId));
-    }, [data.likes]);
+        setLiked(data?.postDetail.likes?.includes(auth.userId));
+    }, [data?.postDetail?.likes]);
 
     useEffect(() => {
         data?.contents?.replaceAll('<img', '<img class="img"');
         data?.contents?.replaceAll('<code', '<code class="code"');
     }, [data?.contents]);
+
+    useEffect(() => {
+        if (data.loading) {
+            dispatch({ type: 'START_LOADING' });
+        } else {
+            dispatch({ type: 'STOP_LOADING' });
+        }
+    }, [data.loading]);
 
     console.log(data?.contents?.replaceAll('<img', '<img class="img"'));
 
@@ -98,9 +105,9 @@ const Post = () => {
         <>
             <div className="post-wrap">
                 <div className="title-wrap">
-                    <p className="category">{data?.category?.categoryName}</p>
-                    <p className="title">{data.title}</p>
-                    <p className="date">{data.date}</p>
+                    <p className="category">{data?.postDetail?.category?.categoryName}</p>
+                    <p className="title">{data?.postDetail.title}</p>
+                    <p className="date">{data?.postDetail.date}</p>
 
                     {auth?.user?.role === 'MainMaster' && (
                         <div className="edit-icon-wrapper">
@@ -117,7 +124,7 @@ const Post = () => {
                     <div
                         className="content"
                         dangerouslySetInnerHTML={{
-                            __html: data?.contents
+                            __html: data?.postDetail.contents
                                 ?.replaceAll('<img', '<img class="img"')
                                 ?.replaceAll('<p><code', '<p class="code-wrap"><code class="code"'),
                         }}
@@ -135,11 +142,11 @@ const Post = () => {
                             fontSize={'25px'}
                             color="rgb(237, 64, 107)"
                         />
-                        <p className="likes-count">{data.likesCount}</p>
+                        <p className="likes-count">{data?.postDetail?.likesCount}</p>
                     </div>
                     <div className="comments" onClick={handleComments}>
                         <FontAwesomeIcon icon={faComment} fontSize={'25px'} />
-                        <p className="likes-count">{data?.comments?.length}</p>
+                        <p className="likes-count">{data?.postDetail?.comments?.length}</p>
                     </div>
                 </div>
                 <div className="share">

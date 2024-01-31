@@ -9,12 +9,13 @@ const CommentSlideUp = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const [input, setInput] = useState('');
-    const { auth, comments } = useSelector((state) => {
+    const { auth, comments, comment } = useSelector((state) => {
         return {
             confirmModal: state.modals.confirmModal,
             auth: state.auth,
             data: state.post.postDetail,
             comments: state.comment.comments,
+            comment: state.comment,
         };
     });
 
@@ -44,6 +45,14 @@ const CommentSlideUp = () => {
             payload: params.id,
         });
     }, []);
+
+    useEffect(() => {
+        if (comment.loading) {
+            dispatch({ type: 'START_LOADING' });
+        } else {
+            dispatch({ type: 'STOP_LOADING' });
+        }
+    }, [comment.loading]);
 
     const contents = () => {
         return (
