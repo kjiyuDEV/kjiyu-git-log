@@ -39,7 +39,7 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
                 <p
                     className="go-back"
                     onClick={() => {
-                        history.goBack(-1);
+                        history.push('/');
                     }}
                 >
                     <FontAwesomeIcon icon={faArrowLeft} fontSize={'20px'} />
