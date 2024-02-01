@@ -81,7 +81,7 @@ router.post('/', auth, uploadS3.none(), async (req, res, next) => {
             previewContents,
             fileUrl,
             creator: req.user.id,
-            date: moment().add(7, 'hours').format('YYYY-MM-DD HH:mm'),
+            date: moment().add(3, 'hours').format('YYYY-MM-DD HH:mm'),
         });
 
         const findResult = await Category.findOne({
@@ -169,7 +169,7 @@ router.post('/:id/comments', async (req, res, next) => {
         creator: req.body.userId,
         creatorName: req.body.userName,
         post: req.body.id,
-        date: moment().add(7, 'hours').format('YYYY-MM-DD HH:mm'),
+        date: moment().add(3, 'hours').format('YYYY-MM-DD HH:mm'),
     });
     console.log(newComment, 'newComment');
 
@@ -245,7 +245,7 @@ router.post('/:id/edit', async (req, res, next) => {
                 contents,
                 previewContents,
                 fileUrl,
-                date: moment().add(7, 'hours').format('YYYY-MM-DD HH:mm'),
+                date: moment().add(3, 'hours').format('YYYY-MM-DD HH:mm'),
             },
             { new: true },
         );
