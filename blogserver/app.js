@@ -22,12 +22,13 @@ const prod = process.env.NODE_ENV === 'production';
 app.use(hpp());
 app.use(helmet({ contentSecurityPolicy: false }));
 if (prod) {
-    app.use({
-        origin: ['https://kjiyulog.com', /\.kjiyulog\.com$/],
-        credentials: true,
-    });
+    app.use(
+        cors({
+            origin: ['https://kjiyulog.com', /\.kjiyulog\.com$/],
+            credentials: true,
+        }),
+    );
 } else {
-    app.use(morgan('dev'));
     app.use(
         cors({
             origin: true,
@@ -35,7 +36,7 @@ if (prod) {
         }),
     );
 }
-// app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(express.json());
