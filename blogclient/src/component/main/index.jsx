@@ -143,7 +143,7 @@ const Main = () => {
                                             <span className="time">{v.date.split(' ')[1]}</span>
                                         </span>
                                     </div>
-                                    {v.fileUrl !== 'http://localhost:7000' && v.fileUrl !== 'http://34.194.231.95' && (
+                                    {v.fileUrl !== 'http://localhost:7000' && v.fileUrl !== 'https://kjiyulog.com' && (
                                         <div className="post-image">
                                             <img className="post-main-image" src={`${v.fileUrl}`} />
                                         </div>
