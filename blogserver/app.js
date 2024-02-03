@@ -21,8 +21,21 @@ const prod = process.env.NODE_ENV === 'production';
 
 app.use(hpp());
 app.use(helmet({ contentSecurityPolicy: false }));
-
-app.use(cors({ origin: true, credentials: true }));
+if (prod) {
+    app.use({
+        origin: ['https://kjiyulog.com', /\.kjiyulog\.com$/],
+        credentials: true,
+    });
+} else {
+    app.use(morgan('dev'));
+    app.use(
+        cors({
+            origin: true,
+            credentials: true,
+        }),
+    );
+}
+// app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(express.json());
@@ -43,7 +56,16 @@ mongoose
     .catch((e) => console.log(e));
 
 // Use routes
-
+if (prod)
+    app.all('*', (req, res, next) => {
+        let protocol = req.headers['x-forward-proto'] || req.protocol;
+        if (protocol === 'https') {
+            next();
+        } else {
+            let to = `https://${req.hostname}${req.url}`;
+            res.redirect(to);
+        }
+    });
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
