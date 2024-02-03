@@ -1,4 +1,6 @@
 {
+    "name": "jiyulog",
+    "version": "1.0.0",
     "devDependencies": {
         "@babel/cli": "^7.23.4",
         "@babel/core": "^7.23.6",
