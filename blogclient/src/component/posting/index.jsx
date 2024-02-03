@@ -24,7 +24,7 @@ const Posting = () => {
         title: postData.title || null,
         contents: postData.contents || null,
         previewContents: null,
-        category: '개발기록',
+        category: '일상',
         fileUrl: '',
     });
     console.log(postData, '<postData!');
@@ -208,8 +208,15 @@ const Posting = () => {
             />
             <div className="category-wrap">
                 <p>카테고리</p>
-                <select>
-                    <option>일상</option>
+                <select
+                    onChange={(e) => {
+                        console.log(e.target);
+                        setForm({ ...form, category: e.target.value });
+                    }}
+                    value={form.category}
+                >
+                    <option value="일상">일상</option>
+                    <option value="개발기록">개발기록</option>
                 </select>
             </div>
         </div>
