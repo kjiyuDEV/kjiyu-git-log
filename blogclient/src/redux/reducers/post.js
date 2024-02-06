@@ -12,6 +12,7 @@ const initialState = {
     title: '',
     searchBy: '',
     searchResult: '',
+    visitor: '',
 };
 
 export const postReducer = (state = initialState, action) => {
@@ -28,6 +29,7 @@ export const postReducer = (state = initialState, action) => {
                 categoryFindResult: action.payload.categoryFindResult,
                 postCount: action.payload.postCount,
                 loading: false,
+                visitor: action.payload.visitorsCount.views,
             };
         case TYPE.POSTS_LOADING_FAILURE:
             return {
@@ -158,6 +160,11 @@ export const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postDetail: { ...state.postDetail, likes: action.payload.likes, likesCount: action.payload.likesCount },
+            };
+        case TYPE.VIEWS_CHECK_SUCCESS:
+            return {
+                ...state,
+                visitor: action.payload.views,
             };
         default:
             return state;

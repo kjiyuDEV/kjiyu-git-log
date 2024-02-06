@@ -10,6 +10,7 @@ import path from 'path';
 import postRoutes from './routes/api/post';
 import userRoutes from './routes/api/user';
 import authRoutes from './routes/api/auth';
+import visitorRoutes from './routes/api/visitor';
 
 import morgan from 'morgan';
 
@@ -70,6 +71,7 @@ if (prod)
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/visitor', visitorRoutes);
 if (prod) {
     app.use(express.static(path.join(__dirname, '../blogclient/build')));
     app.get('*', (req, res) => {
