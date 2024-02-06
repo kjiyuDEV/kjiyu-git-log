@@ -16,6 +16,7 @@ import multerS3 from 'multer-s3';
 import path from 'path';
 import AWS from 'aws-sdk';
 import { isNullOrUndefined } from 'util';
+import Visitor from '../../models/visitor';
 
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_KEY,
@@ -59,7 +60,9 @@ router.get('/skip/:skip', async (req, res) => {
         const postsList = await Post.find().skip(Number(req.params.skip)).sort({ date: -1 });
 
         const categoryFindResult = await Category.find();
-        const result = { postsList, categoryFindResult, postCount };
+        const visitorsCount = await Visitor.findOne();
+
+        const result = { postsList, categoryFindResult, postCount, visitorsCount };
 
         res.json(result);
     } catch (e) {

@@ -13,6 +13,8 @@ const Main = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const visitInit = JSON.parse(localStorage.getItem('visitInit'));
+
     const { auth, posts, post } = useSelector((state) => {
         console.log(state);
         return {
@@ -70,6 +72,7 @@ const Main = () => {
     useEffect(() => {
         initFetch();
     }, []);
+
     useEffect(() => {
         if (post.loading) {
             dispatch({ type: 'START_LOADING' });
@@ -77,14 +80,31 @@ const Main = () => {
             dispatch({ type: 'STOP_LOADING' });
         }
     }, [post.loading]);
-    console.log(document.getElementsByTagName('figure'));
-    console.log(moment().add(13, 'hours').format('YYYY-MM-DD HH:mm'));
+
+    useEffect(() => {
+        if (!visitInit) {
+            const currentDate = new Date();
+            const expirationDate = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                currentDate.getDate() + 1,
+                0,
+                0,
+                0,
+            );
+            const item = {
+                exTime: expirationDate, // 만료 날짜를 그대로 저장
+            };
+            localStorage.setItem('visitInit', JSON.stringify(item));
+            dispatch({ type: TYPE.VIEWS_CHECK_REQUEST });
+        }
+    }, [visitInit]);
     return (
         <>
             <div className="banner">
                 <div className="visitor">
                     <p>total 방문자 수</p>
-                    <p>1,234</p>
+                    <p>{post?.visitor}</p>
                 </div>
                 <div className="comment">
                     <p>반갑습니다! 그냥 이것저것 기록용.</p>
