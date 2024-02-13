@@ -74,12 +74,13 @@ const CommentSlideUp = () => {
                 </div>
                 <div className="input-wrapper">
                     <input
+                        disabled={auth.user ? false : true}
                         value={input}
                         className="input"
                         placeholder={`${auth.user ? '내용을 입력하세요' : '댓글을 작성하려면 로그인하세요'}`}
                         onChange={handleInput}
                     />
-                    <button className="button" onClick={handleSubmit}>
+                    <button disabled={auth.user ? false : true} className="button" onClick={handleSubmit}>
                         등록
                     </button>
                 </div>

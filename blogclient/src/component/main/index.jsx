@@ -93,7 +93,7 @@ const Main = () => {
                 0,
             );
             const item = {
-                exTime: expirationDate, // 만료 날짜를 그대로 저장
+                exTime: expirationDate,
             };
             localStorage.setItem('visitInit', JSON.stringify(item));
             dispatch({ type: TYPE.VIEWS_CHECK_REQUEST });
@@ -107,9 +107,8 @@ const Main = () => {
                     <p>{post?.visitor}</p>
                 </div>
                 <div className="comment">
-                    <p>반갑습니다! 그냥 이것저것 기록용.</p>
-                    <p>개발일지 및 일상을 주로 기록하려함.</p>
-                    <p>* 회원 권한 승인 이후 comment 및 likes 가능</p>
+                    <p>개발일지 및 일상을 주로 기록</p>
+                    <p>아직 개발중인점 참고 부탁드립니다</p>
                     <p>* This site developed by kjiyu 2024</p>
                 </div>
                 <div className="icon_wrap">
