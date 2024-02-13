@@ -311,7 +311,7 @@ router.get('/category/:categoryName', async (req, res, next) => {
             'posts',
         ).populate({ path: 'posts' });
         console.log(result, 'Category Find result');
-        res.send(result);
+        res.send({ ...result, posts: result.posts.reverse() });
     } catch (e) {
         console.log(e);
         next(e);
