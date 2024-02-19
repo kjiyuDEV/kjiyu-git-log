@@ -155,12 +155,12 @@ const Main = () => {
                     posts?.map((v) => {
                         return (
                             <li key={v.id} className="post-card" onClick={() => history.push(`/post/${v._id}`)}>
-                                <div>
+                                <div className="post-card-wrap">
                                     <div className="post-title">
-                                        <span className="date">
+                                        <p className="date">
                                             {v.date.split(' ')[0]}
-                                            <span className="time">{v.date.split(' ')[1]}</span>
-                                        </span>
+                                            <p className="time">{v.date.split(' ')[1]}</p>
+                                        </p>
                                     </div>
                                     {v.fileUrl !== 'http://localhost:7000' && v.fileUrl !== 'https://kjiyulog.com' && (
                                         <div className="post-image">

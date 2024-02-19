@@ -126,7 +126,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 0px 15px;
-        font-size: 13px;
+        font-size: 14px;
         position: relative;
         .select {
             height: 30px;
@@ -151,14 +151,22 @@
     border: solid 1px #eaeaea;
     background: white;
     margin: 10px 0;
-    padding: 10px;
-    font-size: 13px;
+    padding: 15px 20px;
+    font-size: 14px;
     color: black;
     cursor: pointer;
+    .post-card-wrap {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .post-title {
         display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
+        width: 320px;
+        height: 20px;
         .date {
             margin-top: 5px;
             display: flex;
@@ -166,11 +174,10 @@
             display: -ms-flexbox;
             align-items: center;
             color: grey;
-            width: 130px;
             .time {
                 /* border: solid 2px blue; */
                 margin-left: 5px;
-                font-size: 11px;
+                font-size: 14px;
             }
         }
     }
@@ -183,7 +190,7 @@
         display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
-        margin: 15px auto;
+        margin: 10px 0;
         align-items: center;
         .post-main-image {
             height: 100%;
@@ -210,7 +217,7 @@
             word-break: break-word;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 13px;
+            font-size: 14px;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -218,17 +225,18 @@
             justify-content: center;
         }
         width: 320px;
-        margin: 10px auto;
+        margin: 10px 0;
         /* border: solid 2px blue; */
     }
     .bottom-info {
         width: 320px;
         display: flex;
-        margin: 15px auto;
+        justify-content: flex-end;
+        margin: 5px auto;
         .likes,
         .comments {
             display: flex;
-            margin-right: 10px;
+            margin-right: 15px;
             .count {
                 margin-left: 5px;
             }
@@ -379,7 +387,7 @@
         text-align: center;
         padding: 20px 0;
         .category {
-            font-size: 13px;
+            font-size: 14px;
         }
         .title {
             margin: 10px 0;
