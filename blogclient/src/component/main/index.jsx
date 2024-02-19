@@ -157,7 +157,7 @@ const Main = () => {
                             <li key={v.id} className="post-card" onClick={() => history.push(`/post/${v._id}`)}>
                                 <div className="post-card-wrap">
                                     <div className="post-title">
-                                        <p className="date">
+                                        <p className="date" style={{ display: 'flex' }}>
                                             {v.date.split(' ')[0]}
                                             <p className="time">{v.date.split(' ')[1]}</p>
                                         </p>
