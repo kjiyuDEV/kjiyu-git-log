@@ -39,7 +39,7 @@ const Posting = () => {
             'italic',
             'underline',
             'strikethrough',
-            'code',
+            'codeBlock',
             '|',
             'fontColor',
             'fontBackgroundColor',
@@ -70,6 +70,16 @@ const Posting = () => {
         },
         fontSize: {
             options: [10, 11, 12, 13, 14, 15, 16, 17, 18],
+        },
+
+        codeBlock: {
+            languages: [
+                { language: 'javascript', label: 'JavaScript' },
+                { language: 'react', label: 'React' },
+                { language: 'typescript', label: 'TypeScript' },
+                { language: 'html', label: 'HTML' },
+                { language: 'css', label: 'CSS' },
+            ],
         },
 
         fontColor: {
