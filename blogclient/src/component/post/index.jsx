@@ -126,7 +126,8 @@ const Post = () => {
                         dangerouslySetInnerHTML={{
                             __html: data?.postDetail.contents
                                 ?.replaceAll('<img', '<img class="img"')
-                                ?.replaceAll('<p><code', '<p class="code-wrap"><code class="code"'),
+                                ?.replaceAll('<p><code', '<p class="code-wrap"><code class="code"')
+                                ?.replaceAll('<pre', '<pre class="code-block"'),
                         }}
                     ></div>
                     {/* <div dangerouslySetInnerHTML={{ __html: data.contents }}></div>
