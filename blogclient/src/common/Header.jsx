@@ -11,9 +11,11 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     const [isSearch, setIsSearch] = useState(false);
     const [fixedHeader, setFixedHeader] = useState(false);
 
+    console.log(document.body)
     const handleScroll = useCallback((e) => {
-        if (wrapRef?.current?.scrollTop > 0) {
+        if (document?.body.scrollTop > 0) {
             setScroll(true);
+            console.log('???')
         } else {
             setScroll(false);
         }
@@ -22,11 +24,9 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     console.log(history);
 
     useEffect(() => {
-        if (wrapRef?.current) {
-            wrapRef.current.addEventListener('scroll', handleScroll);
-            // return () => wrapRef.current.removeEventListener('scroll', handleScroll);
-        }
-    }, [wrapRef?.current]);
+       window.addEventListener('scroll', handleScroll);
+        // return () => wrapRef.current.removeEventListener('scroll', handleScroll);
+    }, [document.body]);
 
     useEffect(() => {
         const postId = history.location.pathname.substring('/post/'.length);
@@ -35,23 +35,25 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
 
     return (
         <div className={`header ${scroll || fixedHeader ? 'active' : 'inactive'}`}>
-            {history.location.pathname !== '/' && (
-                <p
-                    className="go-back"
-                    onClick={() => {
-                        history.push('/');
-                    }}
-                >
-                    <FontAwesomeIcon icon={faArrowLeft} fontSize={'20px'} />
-                </p>
-            )}
-            {!isSearch ? (
-                <p className="p" onClick={() => history.push('/')}>
-                    kjiyu's iroiro log
-                </p>
-            ) : (
-                <input className="input" type="text" name="title" placeholder={'제목 및 내용을 입력해서 검색'} />
-            )}
+            <div className="header-left-wrap">
+                {history.location.pathname !== '/' && (
+                    <p
+                        className="go-back"
+                        onClick={() => {
+                            history.push('/');
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faArrowLeft} fontSize={'20px'} />
+                    </p>
+                )}
+                {!isSearch ? (
+                    <p className="p" onClick={() => history.push('/')}>
+                        kjiyu's iroiro log
+                    </p>
+                ) : (
+                    <input className="input" type="text" name="title" placeholder={'제목 및 내용을 입력해서 검색'} />
+                )}
+            </div>
             <div className="right-box">
                 <div className="search" onClick={() => setIsSearch(!isSearch)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />

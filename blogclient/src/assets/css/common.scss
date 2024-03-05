@@ -1,3 +1,6 @@
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
@@ -50,10 +53,11 @@
 }
 
 body {
+    background-color: #f6f6f6;
     line-height: 1.25;
     color: black;
-    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
     font-size: 14px;
+	font-family: 'Noto Sans KR', sans-serif;
 
     .color-red {
         color: red;
@@ -68,20 +72,19 @@ body {
 
 .main-wrap {
     @media only screen and (min-width: 421px) {
-        width: 420px;
+        width: 680px;
     }
     @media only screen and (max-width: 420px) {
         width: 100vw;
     }
-    height: 100vh;
+    height: inherit;
     margin: 0 auto;
     background: #f6f6f6;
     position: relative;
-    overflow: hidden;
     .wrap {
-        height: 100vh;
+        width: inherit;
         /* overflow: scroll; */
-        overflow-x: hidden;
+
     }
 }
 
@@ -96,18 +99,20 @@ body {
     position: absolute;
     z-index: 98;
     background: white;
-    width: 100%;
+    width: inherit;
     height: 60px;
-    top: -100px;
-    .go-back {
-        position: absolute;
-        margin-left: 15px;
-        margin-top: 10px;
-    }
-    > .p {
-        margin-left: 50px;
+    .header-left-wrap {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        .p {
         font-size: 20px;
+        }
     }
+    .go-back {
+      margin-right: 10px;
+    }
+    
     .input {
         border: solid 1px gainsboro;
         border-radius: 5px;
@@ -132,7 +137,7 @@ body {
 
 .header.active {
     animation: dropdown-active-animation 0.4s ease;
-    top: 0;
+    position: fixed;
 }
 .header.inactive {
     animation: dropdown-inactive-animation 0.4s ease;
@@ -141,8 +146,8 @@ body {
 
 /******************** 슬라이드메뉴 ********************/
 .slide-menu {
-    position: absolute;
-    width: 100%;
+    position: fixed;
+    width: inherit;
     height: 100%;
     left: 100%;
     background: white;
@@ -217,9 +222,9 @@ body {
 .modal-wrap {
     background: #333333a1;
     z-index: 100;
-    position: absolute;
+    position: fixed;
     top: 0;
-    width: 100%;
+    width: inherit;
     height: 100%;
     .modal {
         max-width: 350px;
@@ -303,15 +308,16 @@ body {
 .slideUp-wrapper {
     position: absolute;
     z-index: 1000;
-    height: 100vh;
-    width: 100%;
+    height: 100%;
+    width: inherit;
     background: rgba(0, 0, 0, 0.596);
     top: 0;
     .slideUp {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         background: white;
-        width: 100%;
+        width: inherit;
+        height: auto;
         .slideUp-header {
             height: 5vh;
             font-size: 17px;
@@ -328,8 +334,8 @@ body {
         }
         .content {
             padding: 0px 20px;
-            height: 50vh;
-            overflow-y: scroll;
+            height: 40vh;
+            overflow: scroll;
             .comment-box {
                 padding: 20px 0;
                 border-bottom: solid 1px rgb(214, 214, 214);
@@ -368,7 +374,7 @@ body {
     }
     .slideUp.active {
         animation: slideup-active-animation 0.4s ease;
-        bottom: none;
+        bottom: 0px;
     }
     .slideUp.inactive {
         animation: slideup-inactive-animation 0.4s ease;

@@ -77,12 +77,12 @@
         }
     }
     .visitor {
-        top: 50%;
+        top: 40%;
         /* border: solid 2px blue; */
     }
     .comment {
         /* border: solid 2px blue; */
-        top: 62.5%;
+        top: 55%;
     }
     .icon_wrap {
         position: relative;
@@ -186,7 +186,7 @@
         overflow: hidden;
         border-radius: 10px;
         width: 320px;
-        height: 320px;
+        height: 400px;
         display: flex;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -425,9 +425,9 @@
     display: flex;
     display: -webkit-box;
     display: -ms-flexbox;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%;
+    width: inherit;
     background: white;
     align-items: center;
     justify-content: space-between;
