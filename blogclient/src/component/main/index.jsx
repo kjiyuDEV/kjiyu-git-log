@@ -109,7 +109,8 @@ const Main = () => {
                 <div className="comment">
                     <p>개발일지 및 일상을 주로 기록</p>
                     <p>아직 개발중인점 참고 부탁드립니다</p>
-                    <p>* This site developed by kjiyu 2024</p>
+                    <p>React/Redux/Typescript/Nodejs/AWS</p>
+                    <p>* This site developed by kjiyu 2024, React&Node.js</p>
                 </div>
                 <div className="icon_wrap">
                     {/* {auth.token && (
