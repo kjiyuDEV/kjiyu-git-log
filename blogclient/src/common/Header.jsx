@@ -11,11 +11,9 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     const [isSearch, setIsSearch] = useState(false);
     const [fixedHeader, setFixedHeader] = useState(false);
 
-    console.log(document.body)
     const handleScroll = useCallback((e) => {
         if (document?.body.scrollTop > 0) {
             setScroll(true);
-            console.log('???')
         } else {
             setScroll(false);
         }
@@ -24,7 +22,7 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
     console.log(history);
 
     useEffect(() => {
-       window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
         // return () => wrapRef.current.removeEventListener('scroll', handleScroll);
     }, [document.body]);
 
@@ -58,9 +56,9 @@ const Header = ({ hideMenu, setHideMenu, wrapRef }) => {
                 <div className="search" onClick={() => setIsSearch(!isSearch)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </div>
-                <div className="menu">
+                {/* <div className="menu">
                     <FontAwesomeIcon icon={faBars} onClick={() => setHideMenu(!hideMenu)} />
-                </div>
+                </div> */}
             </div>
         </div>
     );

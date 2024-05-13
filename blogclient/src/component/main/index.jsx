@@ -8,6 +8,7 @@ import { useHistory, withRouter } from 'react-router-dom/cjs/react-router-dom.mi
 import moment from 'moment';
 import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons';
+import toast from 'react-hot-toast';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -84,14 +85,7 @@ const Main = () => {
     useEffect(() => {
         if (!visitInit) {
             const currentDate = new Date();
-            const expirationDate = new Date(
-                currentDate.getFullYear(),
-                currentDate.getMonth(),
-                currentDate.getDate() + 1,
-                0,
-                0,
-                0,
-            );
+            const expirationDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, 0, 0, 0);
             const item = {
                 exTime: expirationDate,
             };
@@ -111,7 +105,7 @@ const Main = () => {
                     <p>토이프로젝트 겸 만든 블로그입니다</p>
                     <p>React/nodejs로 개발되었습니다</p>
                     <p>* This site developed by kjiyu 2024, React&Node.js</p>
-                    <br/>
+                    <br />
                     <p>React/Redux/NextJs/Typescript/Nodejs/AWS</p>
                 </div>
                 <div className="icon_wrap">
@@ -135,7 +129,13 @@ const Main = () => {
                             {/* <FontAwesomeIcon icon={faUser} /> */}
                         </div>
                     </div>
-                    <div className="share">
+                    <div
+                        className="share"
+                        onClick={() => {
+                            toast('블로그 주소를 복사했어요');
+                            navigator.clipboard.writeText(window.location.href);
+                        }}
+                    >
                         <div>
                             <FontAwesomeIcon icon={faShare} />
                         </div>
@@ -178,11 +178,7 @@ const Main = () => {
                                 <div className="bottom-info">
                                     <div className="likes">
                                         {/* <FontAwesomeIcon icon={faHeart} fontSize={'25px'} /> */}
-                                        <FontAwesomeIcon
-                                            icon={true ? faHeartFill : faHeart}
-                                            fontSize={'25px'}
-                                            color="rgb(237, 64, 107)"
-                                        />
+                                        <FontAwesomeIcon icon={true ? faHeartFill : faHeart} fontSize={'25px'} color="rgb(237, 64, 107)" />
                                         <p className="count">{v.likesCount}</p>
                                     </div>
                                     <div className="comments">

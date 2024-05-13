@@ -111,11 +111,7 @@ const Post = () => {
 
                     {auth?.user?.role === 'MainMaster' && (
                         <div className="edit-icon-wrapper">
-                            <FontAwesomeIcon
-                                icon={faPen}
-                                className="svg"
-                                onClick={() => history.push(`/posting/edit/${params.id}`)}
-                            />
+                            <FontAwesomeIcon icon={faPen} className="svg" onClick={() => history.push(`/posting/edit/${params.id}`)} />
                             <FontAwesomeIcon className="svg" icon={faTrash} onClick={handleModal} />
                         </div>
                     )}
@@ -138,11 +134,7 @@ const Post = () => {
                 <div className="left-wrap">
                     <div className="likes" onClick={handleLikes}>
                         {/* <FontAwesomeIcon icon={faHeart} fontSize={'25px'} /> */}
-                        <FontAwesomeIcon
-                            icon={liked ? faHeartFill : faHeart}
-                            fontSize={'25px'}
-                            color="rgb(237, 64, 107)"
-                        />
+                        <FontAwesomeIcon icon={liked ? faHeartFill : faHeart} fontSize={'25px'} color="rgb(237, 64, 107)" />
                         <p className="likes-count">{data?.postDetail?.likesCount}</p>
                     </div>
                     <div className="comments" onClick={handleComments}>
@@ -150,7 +142,13 @@ const Post = () => {
                         <p className="likes-count">{data?.postDetail?.comments?.length}</p>
                     </div>
                 </div>
-                <div className="share">
+                <div
+                    className="share"
+                    onClick={() => {
+                        toast('해당 게시글의 링크가 복사되었어요');
+                        navigator.clipboard.writeText(window.location.href);
+                    }}
+                >
                     <FontAwesomeIcon icon={faShare} fontSize={'25px'} />
                 </div>
             </div>
