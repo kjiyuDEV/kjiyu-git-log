@@ -30,24 +30,7 @@ const Posting = () => {
     console.log(postData, '<postData!');
     const editorConfiguration = {
         extraPlugins: [Base64UploaderPlugin],
-        toolbar: [
-            'fontSize',
-            'alignment',
-            '|',
-            'highlight',
-            'bold',
-            'italic',
-            'underline',
-            'strikethrough',
-            'codeBlock',
-            '|',
-            'fontColor',
-            'fontBackgroundColor',
-            'imageUpload',
-            '|',
-            'link',
-            '|',
-        ],
+        toolbar: ['fontSize', 'alignment', '|', 'highlight', 'bold', 'italic', 'underline', 'strikethrough', 'codeBlock', '|', 'fontColor', 'fontBackgroundColor', 'imageUpload', '|', 'link', '|'],
 
         heading: {
             options: [
@@ -240,7 +223,7 @@ const Posting = () => {
         setForm({
             ...form,
             contents: data,
-            previewContents: previewContents.substr(0, 100),
+            previewContents: previewContents.substr(0, 300),
         });
     };
 
